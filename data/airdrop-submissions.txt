@@ -1,0 +1,8 @@
+# Zentra Airdrop Submissions
+# Format: wallet|email|allocation_zntr|submitted_at (ISO 8601)
+# Used for future on-chain airdrop claims — do not edit wallet/allocation pairs manually.
+0x10b0822b30fe4eef6fd33bef5e24521bd77440db|admin|4504|2026-05-24T19:18:05.270Z
+0x0862fe48643ce761f97ff1e80efb5dc1a703a21c|anjay|4246|2026-05-24T19:19:19.830Z
+0xf5acdc99a1b3bff28b98bf52e3b14a4151079ef7|askjdalkasj@gmail.com|5290|2026-05-24T19:38:50.266Z
+0x4ef026964fdec686efb7594835cb681faf44bc25|laskdlakdlak@gmail.com|1142|2026-05-24T19:39:59.188Z
+0xea9bd5f672548ba513304aac71d0b0eff93d4f22|hikmadoge@gmail.com|5400|2026-05-24T19:44:47.912Z

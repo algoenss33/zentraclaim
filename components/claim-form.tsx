@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react"
 import { useAccount } from "wagmi"
 import { cn } from "@/lib/utils"
-import { SUBMITTED_WALLET_KEY } from "@/lib/storage-keys"
+import { saveClientRegistration } from "@/lib/client-claim-storage"
+import { isValidEmail, isValidEvmAddress } from "@/lib/validation"
 import { useMounted } from "@/lib/use-mounted"
 
 interface ClaimFormProps {
@@ -29,15 +30,6 @@ export function ClaimForm({
     }
   }, [mounted, isConnected, address])
 
-  const validateEVMAddress = (address: string): boolean => {
-    const evmRegex = /^0x[a-fA-F0-9]{40}$/
-    return evmRegex.test(address)
-  }
-
-  const validateEmail = (value: string): boolean => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
@@ -58,44 +50,26 @@ export function ClaimForm({
       return
     }
 
-    if (!validateEVMAddress(walletAddress)) {
+    if (!isValidEvmAddress(walletAddress)) {
       setError("Invalid EVM wallet address format")
       return
     }
 
-    if (!validateEmail(email)) {
-      setError("Invalid email address format")
+    if (!isValidEmail(email)) {
+      setError("Please enter your email")
       return
     }
 
     setIsSubmitting(true)
 
     try {
-      const res = await fetch("/api/claim", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          walletAddress: walletAddress.trim(),
-          email: email.trim(),
-        }),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        setError(data.error ?? "Submission failed. Please try again.")
-        return
-      }
-
-      const wallet = data.wallet as string
-      const allocation = data.allocation as number
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem(SUBMITTED_WALLET_KEY, wallet)
-      }
+      const submission = saveClientRegistration(
+        walletAddress.trim(),
+        email.trim()
+      )
 
       setSuccess(true)
-      onSubmitSuccess?.(wallet, allocation)
+      onSubmitSuccess?.(submission.wallet, submission.allocation)
 
       if (resetOnSuccess) {
         setTimeout(() => {
@@ -105,7 +79,7 @@ export function ClaimForm({
         }, 3000)
       }
     } catch {
-      setError("Network error. Please try again.")
+      setError("Could not save registration. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -123,8 +97,8 @@ export function ClaimForm({
               Claim Submitted
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Your wallet is registered for the future ZNTR airdrop. Check Step
-              3 to view your fixed allocation anytime.
+              Registration saved. Continue to Step 3 to verify your allocation
+              and claim ZNTR on BNB Smart Chain.
             </p>
           </div>
         </div>
@@ -176,15 +150,15 @@ export function ClaimForm({
                 Email requirement
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Use the same email address you registered during the Zentra
-                Wallet airdrop period. Claims with a different email may not
-                match your eligibility record.
+                Enter any email address linked to your Zentra Wallet account.
+                Registration is saved on this device and does not require a
+                server database.
               </p>
             </div>
             <input
               id="email"
-              type="email"
-              placeholder="your-zentra-airdrop@email.com"
+              type="text"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isSubmitting}

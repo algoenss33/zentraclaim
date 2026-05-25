@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react"
 import { useAccount } from "wagmi"
 import { cn } from "@/lib/utils"
+import { findClientRegistration } from "@/lib/client-claim-storage"
 import { SUBMITTED_WALLET_KEY } from "@/lib/storage-keys"
+import { isValidEvmAddress } from "@/lib/validation"
 import { useMounted } from "@/lib/use-mounted"
 import { AirdropClaimButton } from "@/components/airdrop-claim-button"
 
@@ -45,7 +47,7 @@ export function StatusChecker({
     }
   }, [mounted, initialWallet, isConnected, connectedAddress])
 
-  const runCheck = async (walletToCheck: string) => {
+  const runCheck = (walletToCheck: string) => {
     const trimmed = walletToCheck.trim()
     if (!trimmed) return
 
@@ -53,35 +55,29 @@ export function StatusChecker({
     setStatus(null)
     setError("")
 
-    try {
-      const res = await fetch(
-        `/api/status?address=${encodeURIComponent(trimmed)}`
-      )
-      const data = await res.json()
-
-      if (!res.ok) {
-        setError(data.error ?? "Unable to check status.")
-        return
-      }
-
-      if (data.status === "eligible") {
-        setStatus("eligible")
-        setAllocation(data.allocation)
-        setEmail(data.email ?? "")
-        setSubmittedAt(data.submittedAt ?? "")
-        setSubmittedAtLabel("")
-      } else {
-        setStatus("not-found")
-        setAllocation(0)
-        setEmail("")
-        setSubmittedAt("")
-        setSubmittedAtLabel("")
-      }
-    } catch {
-      setError("Network error. Please try again.")
-    } finally {
+    if (!isValidEvmAddress(trimmed)) {
+      setError("Invalid EVM wallet address format")
       setIsChecking(false)
+      return
     }
+
+    const submission = findClientRegistration(trimmed)
+
+    if (submission) {
+      setStatus("eligible")
+      setAllocation(submission.allocation)
+      setEmail(submission.email)
+      setSubmittedAt(submission.submittedAt)
+      setSubmittedAtLabel("")
+    } else {
+      setStatus("not-found")
+      setAllocation(0)
+      setEmail("")
+      setSubmittedAt("")
+      setSubmittedAtLabel("")
+    }
+
+    setIsChecking(false)
   }
 
   const handleCheck = () => runCheck(address)
@@ -143,8 +139,8 @@ export function StatusChecker({
           <div className="p-5 rounded-2xl bg-zentra-coral/10 border border-zentra-coral/30 animate-in fade-in duration-300">
             <p className="font-bold text-zentra-coral">Not Found</p>
             <p className="text-sm text-muted-foreground mt-1">
-              This wallet has not submitted a claim yet. Complete Step 1 to
-              register your wallet and receive a fixed allocation.
+              No registration found for this wallet on this device. Complete
+              Step 1 to register your wallet and email, then check again.
             </p>
           </div>
         )

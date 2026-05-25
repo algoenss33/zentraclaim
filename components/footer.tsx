@@ -11,11 +11,11 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <ZentraBrand compact logoClassName="w-9 h-9" />
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 text-center md:text-left">
+          <ZentraBrand compact logoClassName="w-8 h-8 sm:w-9 sm:h-9" className="justify-center md:justify-start" />
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -28,7 +28,7 @@ export function Footer() {
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground max-w-xs sm:max-w-none">
             &copy; {new Date().getFullYear()} Zentra Wallet. All rights reserved.
           </p>
         </div>

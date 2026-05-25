@@ -50,38 +50,31 @@ export function CountdownTimer() {
   const timeUnits = [
     { label: "Days", value: display.days },
     { label: "Hours", value: display.hours },
-    { label: "Minutes", value: display.minutes },
-    { label: "Seconds", value: display.seconds },
+    { label: "Min", value: display.minutes },
+    { label: "Sec", value: display.seconds },
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4 w-full max-w-md mx-auto">
       {mounted && ended && (
-        <p className="text-sm font-semibold text-zentra-coral uppercase tracking-wide">
+        <p className="text-xs sm:text-sm font-semibold text-zentra-coral uppercase tracking-wide px-2">
           Claim period has ended
         </p>
       )}
-      <div className="flex items-center justify-center gap-3 md:gap-4">
-        {timeUnits.map((unit, index) => (
-          <div key={unit.label} className="flex items-center gap-3 md:gap-4">
-            <div className="flex flex-col items-center">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-xl bg-zentra-cyan/15 blur-xl" />
-                <div className="relative glass rounded-xl px-4 py-3 md:px-6 md:py-4 min-w-[60px] md:min-w-[80px] text-center border border-zentra-cyan/25">
-                  <span className="text-2xl md:text-4xl font-bold text-white text-glow tabular-nums">
-                    {String(unit.value).padStart(2, "0")}
-                  </span>
-                </div>
+      <div className="grid grid-cols-4 gap-2 sm:gap-3 w-full">
+        {timeUnits.map((unit) => (
+          <div key={unit.label} className="flex flex-col items-center min-w-0">
+            <div className="relative w-full">
+              <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-zentra-cyan/15 blur-lg sm:blur-xl" />
+              <div className="relative glass rounded-lg sm:rounded-xl px-2 py-2.5 sm:px-4 sm:py-3 md:px-6 md:py-4 w-full text-center border border-zentra-cyan/25">
+                <span className="text-lg sm:text-2xl md:text-4xl font-bold text-white text-glow tabular-nums leading-none">
+                  {String(unit.value).padStart(2, "0")}
+                </span>
               </div>
-              <span className="text-xs md:text-sm text-muted-foreground mt-2 uppercase tracking-wider">
-                {unit.label}
-              </span>
             </div>
-            {index < timeUnits.length - 1 && (
-              <span className="text-2xl md:text-4xl font-bold text-zentra-cyan/50 mb-6">
-                :
-              </span>
-            )}
+            <span className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mt-1.5 sm:mt-2 uppercase tracking-wide">
+              {unit.label}
+            </span>
           </div>
         ))}
       </div>

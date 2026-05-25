@@ -106,15 +106,17 @@ export function StatusChecker({
     switch (status) {
       case "eligible":
         return (
-          <div className="p-5 rounded-2xl bg-zentra-green/10 border border-zentra-green/30 animate-in fade-in duration-300 space-y-2">
-            <p className="font-bold text-zentra-green">Registered for Airdrop</p>
-            <p className="text-sm text-muted-foreground">
-              Email:{" "}
-              <span className="text-foreground font-medium">{email}</span>
+          <div className="p-4 sm:p-5 rounded-2xl bg-zentra-green/10 border border-zentra-green/30 animate-in fade-in duration-300 space-y-2">
+            <p className="font-bold text-zentra-green text-sm sm:text-base">
+              Registered for Airdrop
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground break-words">
+              Email:{" "}
+              <span className="text-foreground font-medium break-all">{email}</span>
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Allocation:{" "}
-              <span className="text-foreground font-bold text-lg">
+              <span className="text-foreground font-bold text-base sm:text-lg">
                 {allocation.toLocaleString()} ZNTR
               </span>
             </p>
@@ -150,7 +152,7 @@ export function StatusChecker({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full min-w-0">
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
@@ -158,7 +160,7 @@ export function StatusChecker({
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className={cn(
-            "input-brand flex-1 px-4 py-3.5 rounded-xl text-foreground placeholder:text-muted-foreground/60",
+            "input-brand flex-1 min-w-0 w-full px-4 py-3.5 rounded-xl text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 break-all",
             isCoral && "input-brand-coral"
           )}
         />
@@ -166,7 +168,7 @@ export function StatusChecker({
           type="button"
           onClick={handleCheck}
           disabled={isChecking || !address.trim()}
-          className="group relative px-8 py-3.5 rounded-xl font-bold text-black text-sm shrink-0 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="group relative w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-black text-sm shrink-0 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           <div className="absolute inset-0 rounded-xl brand-gradient opacity-95 group-hover:opacity-100 group-disabled:opacity-40 transition-opacity" />
           <span className="relative min-w-[80px] inline-block text-center">

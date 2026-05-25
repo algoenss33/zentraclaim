@@ -144,14 +144,14 @@ export function AirdropClaimButton({
       : "loading…"
 
   return (
-    <div className={cn("space-y-3 pt-3 border-t border-white/10", className)}>
+    <div className={cn("space-y-3 pt-3 border-t border-white/10 w-full min-w-0", className)}>
       {alreadyClaimed ? (
         <p className="text-sm font-medium text-zentra-green">
           On-chain claim completed for this wallet.
         </p>
       ) : (
         <>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground leading-relaxed break-words">
             Claim {allocation.toLocaleString()} ZNTR on BNB Smart Chain. Network
             fee: {feeLabel}
             {chainId !== AIRDROP_CLAIM_CHAIN_ID && isConnected && (
@@ -164,7 +164,7 @@ export function AirdropClaimButton({
             type="button"
             onClick={handleClaim}
             disabled={busy || !isConnected || alreadyClaimed}
-            className="group relative w-full sm:w-auto px-8 py-3 rounded-xl font-bold text-black text-sm transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            className="group relative w-full sm:w-auto px-8 py-3.5 sm:py-3 rounded-xl font-bold text-black text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             <div className="absolute inset-0 rounded-xl brand-gradient opacity-95 group-hover:opacity-100 group-disabled:opacity-40 transition-opacity" />
             <span className="relative">

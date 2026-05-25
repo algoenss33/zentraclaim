@@ -58,9 +58,9 @@ export function FAQSection() {
   }
 
   return (
-    <div className="faq-frame">
+    <div className="faq-frame w-full min-w-0">
       <div className="faq-inner overflow-hidden">
-        <div className="relative px-6 md:px-10 pt-8 pb-6 border-b border-white/5">
+        <div className="relative px-4 sm:px-6 md:px-10 pt-6 sm:pt-8 pb-5 sm:pb-6 border-b border-white/5">
           <div
             className="absolute inset-0 opacity-40 pointer-events-none"
             style={{
@@ -72,16 +72,16 @@ export function FAQSection() {
             <p className="text-xs font-semibold uppercase tracking-widest text-zentra-cyan mb-1">
               Support
             </p>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
               Frequently Asked Questions
             </h3>
-            <p className="text-sm text-muted-foreground mt-1 max-w-md">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-md leading-relaxed">
               Quick answers about registering, claiming on BSC, and deadlines.
             </p>
           </div>
         </div>
 
-        <div className="p-4 md:p-6 space-y-2">
+        <div className="p-3 sm:p-4 md:p-6 space-y-2">
           {faqs.map((faq, index) => {
             const isOpen = mounted && openIndex === index
 
@@ -98,14 +98,14 @@ export function FAQSection() {
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-4 md:px-5 py-4 flex items-center justify-between gap-4 text-left"
+                  className="w-full px-3 sm:px-4 md:px-5 py-3.5 sm:py-4 flex items-start sm:items-center justify-between gap-3 sm:gap-4 text-left"
                   aria-expanded={isOpen}
                 >
                   <div className="flex-1 min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-zentra-green/90">
                       {faq.category}
                     </span>
-                    <p className="font-semibold text-foreground mt-0.5 leading-snug">
+                    <p className="text-sm sm:text-base font-semibold text-foreground mt-0.5 leading-snug pr-1">
                       {faq.question}
                     </p>
                   </div>
@@ -127,7 +127,7 @@ export function FAQSection() {
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-4 md:px-5 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-white/5 pt-4">
+                    <p className="px-3 sm:px-4 md:px-5 pb-4 sm:pb-5 text-xs sm:text-sm text-muted-foreground leading-relaxed border-t border-white/5 pt-3 sm:pt-4">
                       {faq.answer}
                     </p>
                   </div>
@@ -137,8 +137,8 @@ export function FAQSection() {
           })}
         </div>
 
-        <div className="px-6 md:px-10 py-5 border-t border-white/5 bg-white/[0.02] text-center sm:text-left">
-          <p className="text-sm text-muted-foreground">
+        <div className="px-4 sm:px-6 md:px-10 py-4 sm:py-5 border-t border-white/5 bg-white/[0.02] text-center sm:text-left">
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Need more help? Reach out via our official Zentra Wallet channels.
           </p>
         </div>

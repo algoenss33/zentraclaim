@@ -105,7 +105,7 @@ export function ClaimForm({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="rounded-2xl border border-zentra-cyan/15 bg-zentra-cyan/[0.03] p-5 space-y-5">
+        <div className="rounded-2xl border border-zentra-cyan/15 bg-zentra-cyan/[0.03] p-4 sm:p-5 space-y-4 sm:space-y-5">
           <p className="text-xs font-semibold uppercase tracking-widest text-zentra-cyan">
             Claim Details
           </p>
@@ -126,7 +126,7 @@ export function ClaimForm({
               readOnly={mounted && isConnected}
               disabled={isSubmitting || !mounted || !isConnected}
               className={cn(
-                "input-brand w-full px-4 py-3.5 rounded-xl text-foreground",
+                "input-brand w-full min-w-0 px-4 py-3.5 rounded-xl text-base sm:text-sm text-foreground break-all",
                 "placeholder:text-muted-foreground/60 disabled:opacity-50",
                 mounted && isConnected && "cursor-default opacity-90"
               )}
@@ -164,7 +164,7 @@ export function ClaimForm({
               disabled={isSubmitting}
               autoComplete="email"
               className={cn(
-                "input-brand w-full px-4 py-3.5 rounded-xl text-foreground",
+                "input-brand w-full min-w-0 px-4 py-3.5 rounded-xl text-base sm:text-sm text-foreground",
                 "placeholder:text-muted-foreground/60 disabled:opacity-50"
               )}
             />
@@ -180,7 +180,7 @@ export function ClaimForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="group relative w-full py-4 rounded-xl font-bold text-black text-lg transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(34,211,238,0.35)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+          className="group relative w-full py-3.5 sm:py-4 rounded-xl font-bold text-black text-base sm:text-lg transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] hover:shadow-[0_0_30px_rgba(34,211,238,0.35)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
         >
           <div className="absolute inset-0 rounded-xl brand-gradient opacity-95 group-hover:opacity-100 transition-opacity" />
           <span className="relative">

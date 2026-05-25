@@ -99,27 +99,27 @@ export function ClaimWizard() {
   }
 
   return (
-    <section className="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-      <div className="text-center mb-10">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest border border-zentra-cyan/25 text-zentra-cyan bg-zentra-cyan/5 mb-4">
+    <section className="mb-10 sm:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 w-full min-w-0">
+      <div className="text-center mb-6 sm:mb-10 px-1">
+        <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-widest border border-zentra-cyan/25 text-zentra-cyan bg-zentra-cyan/5 mb-3 sm:mb-4">
           3-Step Flow
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 uppercase">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 uppercase">
           Airdrop Claim Process
         </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
           Complete the following steps to claim your ZNTR tokens
         </p>
       </div>
 
-      <div className="mb-8 max-w-3xl mx-auto px-2">
-        <div className="flex items-center justify-between relative">
+      <div className="mb-6 sm:mb-8 max-w-3xl mx-auto px-1 sm:px-2">
+        <div className="flex items-start justify-between relative gap-1">
           <div
-            className="absolute top-6 left-0 right-0 h-px bg-white/10 mx-14 md:mx-20"
+            className="absolute top-5 sm:top-6 left-0 right-0 h-px bg-white/10 mx-10 sm:mx-14 md:mx-20"
             aria-hidden
           />
           <div
-            className="absolute top-6 left-14 md:left-20 right-14 md:right-20 h-px overflow-hidden"
+            className="absolute top-5 sm:top-6 left-10 sm:left-14 md:left-20 right-10 sm:right-14 md:right-20 h-px overflow-hidden"
             aria-hidden
           >
             <div
@@ -143,13 +143,13 @@ export function ClaimWizard() {
                 onClick={() => isClickable && goToStep(step.id)}
                 disabled={!isClickable}
                 className={cn(
-                  "relative z-10 flex flex-col items-center gap-2.5 flex-1 transition-all duration-300",
+                  "relative z-10 flex flex-col items-center gap-1.5 sm:gap-2.5 flex-1 min-w-0 transition-all duration-300",
                   isClickable ? "cursor-pointer" : "cursor-default opacity-60"
                 )}
               >
                 <div
                   className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center border-2 text-sm font-bold transition-all duration-300",
+                    "w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center border-2 text-xs sm:text-sm font-bold transition-all duration-300",
                     isActive && [step.ring, step.bg, step.text, "scale-110 shadow-lg"],
                     isCompleted &&
                       !isActive &&
@@ -161,10 +161,10 @@ export function ClaimWizard() {
                 >
                   {isCompleted && !isActive ? "✓" : step.id}
                 </div>
-                <div className="text-center hidden sm:block">
+                <div className="text-center w-full min-w-0 px-0.5">
                   <p
                     className={cn(
-                      "text-[10px] font-bold uppercase tracking-widest",
+                      "text-[9px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest",
                       isActive ? step.text : "text-muted-foreground/70"
                     )}
                   >
@@ -172,7 +172,7 @@ export function ClaimWizard() {
                   </p>
                   <p
                     className={cn(
-                      "text-sm font-semibold mt-0.5",
+                      "text-[10px] sm:text-sm font-semibold mt-0.5 leading-tight truncate max-w-[5.5rem] sm:max-w-none mx-auto",
                       isActive ? "text-foreground" : "text-muted-foreground"
                     )}
                   >
@@ -185,16 +185,16 @@ export function ClaimWizard() {
         </div>
       </div>
 
-      <div className="wizard-frame max-w-4xl mx-auto">
+      <div className="wizard-frame max-w-4xl mx-auto w-full min-w-0">
         <div className="wizard-inner overflow-hidden">
           <div
             className={cn(
-              "relative border-b border-white/5 px-6 py-6 md:px-8 md:py-7",
+              "relative border-b border-white/5 px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-7",
               theme.glow
             )}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+              <div className="min-w-0">
                 <span
                   className={cn(
                     "text-[10px] font-bold uppercase tracking-widest mb-1.5 block",
@@ -203,10 +203,10 @@ export function ClaimWizard() {
                 >
                   Step {currentStep} of 3
                 </span>
-                <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                   {theme.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1 max-w-md">
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-md leading-relaxed">
                   {theme.subtitle}
                 </p>
               </div>
@@ -228,7 +228,7 @@ export function ClaimWizard() {
             </div>
           </div>
 
-          <div className="p-6 md:p-8 min-h-[340px] relative">
+          <div className="p-4 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[340px] relative">
             {currentStep === 1 && (
               <div
                 key="step-1"
@@ -256,14 +256,14 @@ export function ClaimWizard() {
                 key="step-2"
                 className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500"
               >
-                <div className="rounded-2xl border border-zentra-green/20 bg-gradient-to-b from-zentra-green/8 to-transparent p-6 md:p-8 text-center">
-                  <p className="text-zentra-green text-xs font-semibold uppercase tracking-widest mb-3">
+                <div className="rounded-2xl border border-zentra-green/20 bg-gradient-to-b from-zentra-green/8 to-transparent p-4 sm:p-6 md:p-8 text-center">
+                  <p className="text-zentra-green text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-2 sm:mb-3">
                     Live Countdown
                   </p>
-                  <h4 className="text-lg font-bold text-foreground mb-1 uppercase">
+                  <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 uppercase">
                     Claim Ends In
                   </h4>
-                  <p className="text-sm text-muted-foreground mb-8">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-5 sm:mb-8 px-1">
                     Submit your claim before {CLAIM_END_LABEL}
                   </p>
                   <CountdownTimer />
@@ -305,11 +305,11 @@ export function ClaimWizard() {
                   ))}
                 </div>
 
-                <div className="rounded-2xl border border-zentra-coral/20 bg-gradient-to-b from-zentra-coral/8 to-transparent p-6 md:p-7">
-                  <h4 className="text-lg font-bold text-foreground mb-1">
+                <div className="rounded-2xl border border-zentra-coral/20 bg-gradient-to-b from-zentra-coral/8 to-transparent p-4 sm:p-6 md:p-7">
+                  <h4 className="text-base sm:text-lg font-bold text-foreground mb-1">
                     Check Your Status
                   </h4>
-                  <p className="text-sm text-muted-foreground mb-5">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
                     Enter your wallet address to view eligibility and allocation.
                   </p>
                   <StatusChecker
@@ -321,15 +321,15 @@ export function ClaimWizard() {
             )}
           </div>
 
-          <div className="flex items-center justify-between gap-4 px-6 py-5 md:px-8 border-t border-white/5 bg-black/40">
+          <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 border-t border-white/5 bg-black/40">
             <button
               type="button"
               onClick={handleBack}
               disabled={currentStep === 1}
               className={cn(
-                "px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-300",
+                "w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-xl font-medium text-sm transition-all duration-300",
                 currentStep === 1
-                  ? "opacity-0 pointer-events-none"
+                  ? "hidden sm:opacity-0 sm:pointer-events-none"
                   : "text-muted-foreground hover:text-foreground border border-white/10 hover:border-white/20 hover:bg-white/5"
               )}
             >
@@ -340,7 +340,7 @@ export function ClaimWizard() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-6 py-2.5 rounded-xl font-semibold text-sm border border-white/15 text-foreground hover:bg-white/5 transition-all duration-300"
+                className="w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-xl font-semibold text-sm border border-white/15 text-foreground hover:bg-white/5 transition-all duration-300"
               >
                 New Claim
               </button>
@@ -349,13 +349,21 @@ export function ClaimWizard() {
                 type="button"
                 onClick={handleNext}
                 disabled={currentStep === 1 && !claimSubmitted}
-                className="group relative px-6 py-2.5 rounded-xl font-semibold text-sm text-black transition-all duration-300 hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="group relative w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-xl font-semibold text-sm text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <div className="absolute inset-0 rounded-xl brand-gradient opacity-95 group-hover:opacity-100 group-disabled:opacity-40 transition-opacity" />
-                <span className="relative">
-                  {currentStep === 1
-                    ? "Continue after submit"
-                    : "Continue to verification"}
+                <span className="relative block text-center">
+                  {currentStep === 1 ? (
+                    <>
+                      <span className="sm:hidden">Continue</span>
+                      <span className="hidden sm:inline">Continue after submit</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="sm:hidden">To verification</span>
+                      <span className="hidden sm:inline">Continue to verification</span>
+                    </>
+                  )}
                 </span>
               </button>
             )}

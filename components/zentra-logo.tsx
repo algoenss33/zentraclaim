@@ -51,10 +51,10 @@ export function ZentraBrand({
   className,
 }: ZentraBrandProps) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("flex items-center gap-2 sm:gap-3 min-w-0", className)}>
       <ZentraLogo className={logoClassName} priority />
-      <div className="flex flex-col leading-tight">
-        <span className="text-lg font-bold tracking-tight md:text-xl">
+      <div className="flex flex-col leading-tight min-w-0">
+        <span className="text-base sm:text-lg font-bold tracking-tight md:text-xl truncate">
           <span className="text-foreground">Zentra</span>
           <span className="text-brand-gradient">
             {" "}

@@ -26,23 +26,18 @@ export default function Home() {
       </header>
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 py-12 md:py-20">
-        <section className="text-center mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <section className="text-center mb-12 md:mb-16">
           <div className="flex justify-center mb-8">
-            <div className="relative">
-              <div
-                className="absolute inset-0 scale-150 rounded-full bg-gradient-to-r from-zentra-cyan/20 via-zentra-green/15 to-zentra-coral/15 blur-3xl"
-                aria-hidden
-              />
-              <ZentraLogo
-                className="relative w-28 h-28 md:w-36 md:h-36 animate-float"
-                showGlow
-                priority
-              />
-            </div>
+            <ZentraLogo
+              className="w-28 h-28 md:w-36 md:h-36"
+              src="/wallet.png"
+              plain
+              priority
+            />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4 text-balance">
-            <span className="text-glow">Zentra Wallet</span>
-            <span className="block mt-1 text-2xl md:text-4xl font-semibold text-brand-gradient">
+            <span className="text-glow uppercase">Zentra Wallet</span>
+            <span className="block mt-1 text-2xl md:text-4xl font-semibold text-brand-gradient uppercase">
               Airdrop Claim Portal
             </span>
           </h1>

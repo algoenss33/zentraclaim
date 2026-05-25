@@ -171,10 +171,20 @@ export function ClaimForm({
             >
               Email
             </label>
+            <div className="rounded-xl border border-zentra-cyan/20 bg-zentra-cyan/[0.06] px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-zentra-cyan mb-1">
+                Email requirement
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Use the same email address you registered during the Zentra
+                Wallet airdrop period. Claims with a different email may not
+                match your eligibility record.
+              </p>
+            </div>
             <input
               id="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder="your-zentra-airdrop@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isSubmitting}

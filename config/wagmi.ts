@@ -1,5 +1,5 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config"
-import { arbitrum, base, mainnet, polygon } from "wagmi/chains"
+import { bsc } from "wagmi/chains"
 
 export const projectId =
   process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? ""
@@ -8,7 +8,7 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
 
 export const wagmiConfig = defaultWagmiConfig({
-  chains: [mainnet, arbitrum, base, polygon],
+  chains: [bsc],
   projectId: projectId || "00000000000000000000000000000000",
   metadata: {
     name: "Zentra Wallet",

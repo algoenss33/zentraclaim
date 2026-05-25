@@ -3,13 +3,17 @@ import { cn } from "@/lib/utils"
 
 interface ZentraLogoProps {
   className?: string
+  src?: string
   showGlow?: boolean
+  plain?: boolean
   priority?: boolean
 }
 
 export function ZentraLogo({
   className = "w-10 h-10",
+  src = "/zentra.png",
   showGlow = false,
+  plain = false,
   priority = false,
 }: ZentraLogoProps) {
   return (
@@ -21,10 +25,13 @@ export function ZentraLogo({
       )}
     >
       <Image
-        src="/zentra.png"
+        src={src}
         alt="Zentra Wallet"
         fill
-        className="object-contain drop-shadow-[0_0_16px_rgba(34,211,238,0.35)]"
+        className={cn(
+          "object-contain",
+          !plain && "drop-shadow-[0_0_16px_rgba(34,211,238,0.35)]"
+        )}
         sizes="(max-width: 768px) 48px, 160px"
         priority={priority}
       />

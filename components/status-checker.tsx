@@ -5,6 +5,7 @@ import { useAccount } from "wagmi"
 import { cn } from "@/lib/utils"
 import { SUBMITTED_WALLET_KEY } from "@/lib/storage-keys"
 import { useMounted } from "@/lib/use-mounted"
+import { AirdropClaimButton } from "@/components/airdrop-claim-button"
 
 type Status = "eligible" | "not-found" | null
 
@@ -121,13 +122,20 @@ export function StatusChecker({
                 {allocation.toLocaleString()} ZNTR
               </span>
             </p>
-            <p className="text-xs text-muted-foreground/80 pt-1 border-t border-white/5">
-              This allocation is permanently tied to your wallet and will not
-              change on refresh. Saved for future claim distribution.
+            <p className="text-xs text-muted-foreground/80 pt-1 border-t border-white/5 leading-relaxed">
+              You are eligible to claim your ZNTR on BNB Smart Chain. Connect
+              the registered wallet below and use{" "}
+              <span className="text-foreground font-medium">Claim ZNTR</span> to
+              complete your on-chain airdrop — the amount must match your
+              allocation above.
               {submittedAtLabel && (
-                <> Submitted {submittedAtLabel}.</>
+                <> Registration submitted {submittedAtLabel}.</>
               )}
             </p>
+            <AirdropClaimButton
+              walletAddress={address}
+              allocation={allocation}
+            />
           </div>
         )
       case "not-found":

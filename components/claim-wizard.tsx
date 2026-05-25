@@ -4,6 +4,7 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { ClaimForm } from "@/components/claim-form"
 import { CountdownTimer } from "@/components/countdown-timer"
+import { CLAIM_END_LABEL } from "@/lib/claim-deadline"
 import { StatusChecker } from "@/components/status-checker"
 
 const STEPS = [
@@ -20,7 +21,7 @@ const STEPS = [
   {
     id: 2,
     title: "Track Progress",
-    subtitle: "Monitor the airdrop distribution timeline",
+    subtitle: "Monitor time remaining until the claim period ends",
     glow: "wizard-step-glow-green",
     ring: "border-zentra-green/50",
     bg: "bg-zentra-green/15",
@@ -103,7 +104,7 @@ export function ClaimWizard() {
         <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest border border-zentra-cyan/25 text-zentra-cyan bg-zentra-cyan/5 mb-4">
           3-Step Flow
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 uppercase">
           Airdrop Claim Process
         </h2>
         <p className="text-muted-foreground max-w-xl mx-auto">
@@ -259,11 +260,11 @@ export function ClaimWizard() {
                   <p className="text-zentra-green text-xs font-semibold uppercase tracking-widest mb-3">
                     Live Countdown
                   </p>
-                  <h4 className="text-lg font-bold text-foreground mb-1">
-                    Distribution Begins In
+                  <h4 className="text-lg font-bold text-foreground mb-1 uppercase">
+                    Claim Ends In
                   </h4>
                   <p className="text-sm text-muted-foreground mb-8">
-                    Claim your tokens before the deadline
+                    Submit your claim before {CLAIM_END_LABEL}
                   </p>
                   <CountdownTimer />
                 </div>

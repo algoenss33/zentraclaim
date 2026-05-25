@@ -7,39 +7,39 @@ import { useMounted } from "@/lib/use-mounted"
 const faqs = [
   {
     category: "Overview",
-    question: "What is the Zentra Airdrop?",
+    question: "What is the Zentra Airdrop Claim Portal?",
     answer:
-      "The Zentra Airdrop is an exclusive token distribution for community members who previously used the Zentra Wallet. Eligible users can claim ZNTR tokens based on their wallet activity and participation within the Zentra ecosystem.",
+      "This portal lets eligible Zentra Wallet users register their wallet and email, then claim ZNTR directly on BNB Smart Chain through our airdrop smart contract. Tokens are received in your wallet when the on-chain claim succeeds — there is no separate off-chain distribution phase.",
   },
   {
     category: "Eligibility",
-    question: "How do I qualify for the airdrop?",
+    question: "Who can claim and what do I need?",
     answer:
-      "To qualify, you must have registered your wallet address during the registration period with a valid email address. Additional criteria include early participation and community engagement.",
+      "You must use the same email you registered during the Zentra Wallet airdrop period, plus the wallet you connect on this site. In Step 1 you register wallet + email. In Step 3 you confirm your fixed ZNTR allocation, then complete the on-chain claim with that exact amount before the deadline.",
   },
   {
     category: "Timeline",
-    question: "When will tokens be distributed?",
+    question: "When does the claim period end?",
     answer:
-      "Token distribution will begin after the claim period ends. The countdown timer shows the remaining time until distribution starts. Make sure to submit your claim before the deadline.",
+      "On-chain claims must be completed before 8 June 2026. Step 2 shows a live countdown until the claim window closes. Register early, then use Claim ZNTR in Step 3 while time remains — after the deadline the contract will no longer accept new claims.",
   },
   {
     category: "Wallets",
-    question: "What wallet types are supported?",
+    question: "Which network and wallets are supported?",
     answer:
-      "We support all EVM-compatible wallets including MetaMask, OKX Wallet, Trust Wallet, Coinbase Wallet, and any wallet that supports Ethereum-based addresses (0x format).",
+      "Claims run on BNB Smart Chain (BSC). Connect an EVM wallet such as MetaMask, OKX Wallet, Trust Wallet, or Coinbase Wallet via the header button. Your connected address must match the wallet you registered in Step 1 when you press Claim ZNTR.",
   },
   {
     category: "Rules",
-    question: "Can I claim multiple times?",
+    question: "Can I claim more than once?",
     answer:
-      "No, each wallet address and email combination can only submit one claim. Multiple submissions from the same wallet will be flagged and may result in disqualification.",
+      "No. Each wallet can register only once in our records, and the smart contract allows one on-chain claim per address. Do not submit duplicate registrations or retry with a different email for the same wallet.",
   },
   {
     category: "Process",
-    question: "What happens after I submit my claim?",
+    question: "How do I claim ZNTR from start to finish?",
     answer:
-      "After submission, your claim will be verified against our eligibility database. You can use the status checker to monitor your claim status. Approved claims will receive tokens during the distribution phase.",
+      "Step 1 — Connect wallet on BSC, enter your Zentra Wallet airdrop email, and register. Step 2 — Track the countdown until 8 June 2026. Step 3 — Check status to see your allocation, connect the same wallet, and tap Claim ZNTR. Confirm the transaction in your wallet; the claim amount must match your displayed allocation and may require a small BNB network fee set by the contract.",
   },
 ] as const
 
@@ -76,7 +76,7 @@ export function FAQSection() {
               Frequently Asked Questions
             </h3>
             <p className="text-sm text-muted-foreground mt-1 max-w-md">
-              Quick answers about eligibility, wallets, and the claim process.
+              Quick answers about registering, claiming on BSC, and deadlines.
             </p>
           </div>
         </div>

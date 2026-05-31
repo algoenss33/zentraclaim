@@ -41,7 +41,12 @@ export function AirdropClaimButton({
     isConnected &&
     address?.toLowerCase() === registeredWallet
 
-  const { data: claimFee } = useReadContract({
+  const {
+    data: claimFee,
+    isLoading: isClaimFeeLoading,
+    isError: isClaimFeeError,
+    refetch: refetchClaimFee,
+  } = useReadContract({
     address: AIRDROP_CLAIM_ADDRESS,
     abi: AIRDROP_CLAIM_ABI,
     functionName: "claimFee",
@@ -122,13 +127,25 @@ export function AirdropClaimButton({
       return
     }
 
+    if (claimFee === undefined) {
+      setLocalError(
+        isClaimFeeError
+          ? "Could not load the claim fee. Check your connection and try again."
+          : "Claim fee is still loading. Please wait a moment."
+      )
+      if (isClaimFeeError) {
+        refetchClaimFee()
+      }
+      return
+    }
+
     try {
       writeContract({
         address: AIRDROP_CLAIM_ADDRESS,
         abi: AIRDROP_CLAIM_ABI,
         functionName: "claimAirdrop",
         args: [claimAmount],
-        value: claimFee ?? 0n,
+        value: claimFee,
         chainId: AIRDROP_CLAIM_CHAIN_ID,
       })
     } catch (err) {
@@ -138,10 +155,13 @@ export function AirdropClaimButton({
     }
   }
 
-  const feeLabel =
-    claimFee !== undefined
-      ? `${formatEther(claimFee)} BNB`
-      : "loading…"
+  const feeLabel = claimFee !== undefined
+    ? `${formatEther(claimFee)} BNB`
+    : isClaimFeeError
+      ? "unavailable"
+      : isClaimFeeLoading
+        ? "loading…"
+        : "loading…"
 
   return (
     <div className={cn("space-y-3 pt-3 border-t border-white/10 w-full min-w-0", className)}>
@@ -163,7 +183,12 @@ export function AirdropClaimButton({
           <button
             type="button"
             onClick={handleClaim}
-            disabled={busy || !isConnected || alreadyClaimed}
+            disabled={
+              busy ||
+              !isConnected ||
+              alreadyClaimed ||
+              claimFee === undefined
+            }
             className="group relative w-full sm:w-auto px-8 py-3.5 sm:py-3 rounded-xl font-bold text-black text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             <div className="absolute inset-0 rounded-xl brand-gradient opacity-95 group-hover:opacity-100 group-disabled:opacity-40 transition-opacity" />

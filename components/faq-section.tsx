@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import { CLAIM_END_LABEL } from "@/lib/claim-deadline"
 import { useMounted } from "@/lib/use-mounted"
 
 const faqs = [
@@ -21,7 +22,7 @@ const faqs = [
     category: "Timeline",
     question: "When does the claim period end?",
     answer:
-      "On-chain claims must be completed before 8 June 2026. Step 2 shows a live countdown until the claim window closes. Register early, then use Claim ZNTR in Step 3 while time remains — after the deadline the contract will no longer accept new claims.",
+      `On-chain claims must be completed before ${CLAIM_END_LABEL}. Step 2 shows a live countdown until the claim window closes. Register early, then use Claim ZNTR in Step 3 while time remains — after the deadline the contract will no longer accept new claims.`,
   },
   {
     category: "Wallets",
@@ -39,7 +40,7 @@ const faqs = [
     category: "Process",
     question: "How do I claim ZNTR from start to finish?",
     answer:
-      "Step 1 — Connect wallet on BSC, enter your Zentra Wallet airdrop email, and register. Step 2 — Track the countdown until 8 June 2026. Step 3 — Check status to see your allocation, connect the same wallet, and tap Claim ZNTR. Confirm the transaction in your wallet; the claim amount must match your displayed allocation and may require a small BNB network fee set by the contract.",
+      `Step 1 — Connect wallet on BSC, enter your Zentra Wallet airdrop email, and register. Step 2 — Track the countdown until ${CLAIM_END_LABEL}. Step 3 — Check status to see your allocation, connect the same wallet, and tap Claim ZNTR. Confirm the transaction in your wallet; the claim amount must match your displayed allocation and may require a small BNB network fee set by the contract.`,
   },
 ] as const
 
